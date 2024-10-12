@@ -47,13 +47,13 @@
                     @Html.DisplayFor(modelItem => item.BaseSalary)
                 </td>
                 <td>
-                    <a asp-aciton="Edit" asp-rout-id="@item.Id">Edit</a>
+                    <a asp-action="Edit" asp-rout-id="@item.Id">Edit</a>
                 </td>
                 <td>
-                    <a asp-aciton="Details" asp-rout-id="@item.Id">Details</a>
+                    <a asp-action="Details" asp-rout-id="@item.Id">Details</a>
                 </td>
                 <td>
-                    <a asp-aciton="Delete" asp-rout-id="@item.Id">Delete</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
