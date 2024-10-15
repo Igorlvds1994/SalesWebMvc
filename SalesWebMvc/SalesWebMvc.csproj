@@ -22,6 +22,7 @@
     <Folder Include="Areas\index\Data\" />
     <Folder Include="Areas\index\Models\" />
     <Folder Include="Areas\index\Views\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
