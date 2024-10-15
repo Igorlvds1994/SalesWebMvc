@@ -102,7 +102,7 @@ namespace SalesWebMvc.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            
+
         }
         public IActionResult Error(string message)
         {
