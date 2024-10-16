@@ -36,55 +36,34 @@
         <form class="form-horizontal" asp-action="GroupingSearch">
             <fieldset>
                 <legend>Grouping search</legend>
+
+                <!-- Min Date -->
                 <div class="form-group">
                     <label for="minDate" class="col-lg-2 control-label">Min Date</label>
                     <div class="col-lg-10">
-                        <input type="date" name="minDate" class="form-control" />
+                        <input type="date" name="minDate" class="form-control" placeholder="dd/mm/aaaa" />
                     </div>
                 </div>
+
+                <!-- Max Date -->
                 <div class="form-group">
                     <label for="maxDate" class="col-lg-2 control-label">Max Date</label>
                     <div class="col-lg-10">
-                        <input type="date" name="maxDate" class="form-control" />
+                        <input type="date" name="maxDate" class="form-control" placeholder="dd/mm/aaaa" />
                     </div>
                 </div>
+
+                <!-- Submit Button -->
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-dark">Submit</button>
                     </div>
                 </div>
+
             </fieldset>
         </form>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-md-6">
-        <form class="form-horizontal" asp-action="GroupingSearch">
-            <fieldset>
-                <legend>Grouping search</legend>
-                <div class="form-group">
-                    <label for="minDate" class="col-lg-2 control-label">Min Date</label>
-                    <div class="col-lg-10">
-                        <input type="date" name="minDate" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="maxDate" class="col-lg-2 control-label">Max Date</label>
-                    <div class="col-lg-10">
-                        <input type="date" name="maxDate" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
-
 <table>
     <thead>
         <tr>
@@ -113,8 +92,8 @@
     </tbody>
 </table>
 
-<div>
-    <a asp-action="Create">Create New</a>
-    <a asp-action="SimpleSearch">Simple Search</a>
-    <a asp-action="GroupingSearch">Grouping Search</a>
+<div style="padding: 10px;">
+    <a asp-action="Create" style="color: white; background-color: black; border: 2px solid white; padding: 10px 20px; text-decoration: none; margin-right: 10px; border-radius: 5px;">Create New</a>
+    <a asp-action="SimpleSearch" style="color: white; background-color: black; border: 2px solid white; padding: 10px 20px; text-decoration: none; margin-right: 10px; border-radius: 5px;">Simple Search</a>
+    <a asp-action="GroupingSearch" style="color: white; background-color: black; border: 2px solid white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Grouping Search</a>
 </div>
