@@ -20,7 +20,7 @@ namespace SalesWebMvc.Services
         public async Task InsertAsync(Seller obj)
         {
             _context.Add(obj);
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         public async Task<Seller> FindByIdAsync(int id)
         {
@@ -38,7 +38,7 @@ namespace SalesWebMvc.Services
             {
                 throw new IntegrityException(e.Message);
             }
-            
+
         }
         public async Task UpdateAsync(Seller obj)
         {

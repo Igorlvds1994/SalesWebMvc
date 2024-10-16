@@ -5,6 +5,8 @@ using SalesWebMvc.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Identity.Client;
+using SalesWebMvc.Models;
+using SalesWebMvc.Controllers;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SalesWebMvcContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("SalesWebMvcContext"),
@@ -15,6 +17,8 @@ builder.Services.AddDbContext<SalesWebMvcContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<SellerService>();
 builder.Services.AddScoped<DepartmentService>();
+builder.Services.AddScoped<SalesRecordService>();
+
 
 var app = builder.Build();
 
