@@ -61,8 +61,9 @@ namespace SalesWebMvc.Services
             return await result
                 .Include(x => x.Seller)
                 .Include(x => x.Seller.Department)
+                .Where(x => x.Seller.Department != null) // Filtrando departamentos nulos
                 .OrderByDescending(x => x.Date)
-                .GroupBy(x => x.Seller.Department)
+                .GroupBy(x => x.Seller.Department!) // Usando o operador '!' para garantir não-null
                 .ToListAsync();
         }
     }

@@ -2,60 +2,71 @@
 
 @{
     ViewData["Title"] = "Grouping Search";
+
+    DateTime minDate = DateTime.Parse(ViewData["minDate"] as string);
+    DateTime maxDate = DateTime.Parse(ViewData["maxDate"] as string);
 }
 
 <h2>@ViewData["Title"]</h2>
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <form class="navbar-form navbar-left" role="search">
+        <form class="navbar-form navbar-left" role="search" asp-action="GroupingSearch">
             <div class="form-group">
                 <label for="minDate">Min Date</label>
-                <input type="date" class="form-control" name="minDate" value=@ViewData["minDate"] />
+                <input type="date" class="form-control" name="minDate" value="@ViewData["minDate"]">
             </div>
             <div class="form-group">
                 <label for="maxDate">Max Date</label>
-                <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"] />
+                <input type="date" class="form-control" name="maxDate" value="@ViewData["maxDate"]">
+            </div>
+            <div class="form-group">
+                <label for="selectedDepartments">Department</label>
+                <select name="selectedDepartments" class="form-control" multiple>
+                    @foreach (var department in ViewBag.Departments)
+
+                    {
+
+                        var isSelected = ViewBag.SelectedDepartments != null && ViewBag.SelectedDepartments.Contains(department.Id);
+                        <option value="@department.Id" selected="@isSelected">
+                            @department.Name
+                        </option>
+                    }
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Filter</button>
         </form>
     </div>
 </nav>
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Grouped Sales</h3>
-    </div>
-    <div class="panel-body">
-        @foreach (var group in Model)
-
-        {
-            <h4>Department: @group.Key.Name</h4>
-            <h5>Total sales for this department: @group.Sum(s => s.Amount).ToString("F2")</h5> <!-- Aqui soma o total de vendas -->
-
+@foreach (var departmentGroup in Model)
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Department @departmentGroup.Key.Name, Total sales = @departmentGroup.Key.TotalSales(minDate, maxDate).ToString("F2")</h3>
+        </div>
+        <div class="panel-body">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr class="success">
-                        <th>@Html.DisplayNameFor(model => group.First().Id)</th>
-                        <th>@Html.DisplayNameFor(model => group.First().Date)</th>
-                        <th>@Html.DisplayNameFor(model => group.First().Seller.Name)</th>
-                        <th>@Html.DisplayNameFor(model => group.First().Amount)</th>
-                        <th>@Html.DisplayNameFor(model => group.First().Status)</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Seller</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in group)
+                    @foreach (var item in departmentGroup)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
                             <td>@Html.DisplayFor(modelItem => item.Date)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Seller.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Seller.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.Status)</td>
                         </tr>
                     }
                 </tbody>
             </table>
-        }
+        </div>
     </div>
-</div>
+}
